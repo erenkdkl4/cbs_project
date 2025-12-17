@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sultan Ahmed Camii – 3D Model</title>
 
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <style>
       :root {
         --bg1: #0b1220;
@@ -23,8 +30,7 @@
       body {
         margin: 0;
         min-height: 100vh;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-          Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
         color: var(--text);
         background: radial-gradient(
             1200px 600px at 20% 10%,
@@ -47,17 +53,29 @@
         margin-bottom: 16px;
       }
 
-      .header h1 {
-        margin: 0 0 8px;
-        font-size: clamp(22px, 2.4vw, 34px);
-        letter-spacing: 0.2px;
+      .header h3 {
+        margin: 0;
+        font-size: clamp(18px, 2vw, 24px);
       }
 
-      .header p {
-        margin: 0;
-        color: var(--muted);
-        font-size: clamp(14px, 1.2vw, 16px);
-        line-height: 1.5;
+      .actions {
+        display: flex;
+        justify-content: center;
+        margin: 14px 0;
+      }
+
+      .btn {
+        cursor: pointer;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-weight: 600;
+      }
+
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.14);
       }
 
       .card {
@@ -66,18 +84,19 @@
         border-radius: 18px;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-        backdrop-filter: blur(10px);
       }
 
-      /* 16:9 responsive frame */
+      /* =====================
+         SKETCHFAB EMBED
+         ===================== */
       .embed {
         position: relative;
         width: 100%;
         aspect-ratio: 16 / 9;
-        background: rgba(0, 0, 0, 0.25);
       }
 
-      .embed iframe {
+      .sketchfab-embed-wrapper,
+      .sketchfab-embed-wrapper iframe {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -85,51 +104,59 @@
         border: 0;
       }
 
-      .footer {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 14px;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 14px;
-        border-top: 1px solid var(--border);
-      }
-
-      .credits {
-        margin: 0;
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.72);
-      }
-
-      .credits a {
-        color: var(--link);
-        text-decoration: none;
-        font-weight: 600;
-      }
-
-      .credits a:hover {
-        text-decoration: underline;
-      }
-
-      .badge {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.78);
-        padding: 6px 10px;
+      /* =====================
+         MODEL ÜSTÜ OVERLAY HARİTA
+         ===================== */
+      .overlay-map {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 280px;
+        height: 170px;
+        border-radius: 14px;
+        overflow: hidden;
         border: 1px solid var(--border);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
-        user-select: none;
-        white-space: nowrap;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        z-index: 5;
+        background: rgba(0, 0, 0, 0.3);
       }
 
-      @media (max-width: 520px) {
-        body {
-          padding: 18px;
-        }
-        .footer {
-          justify-content: center;
-          text-align: center;
-        }
+      #overlayMap {
+        width: 100%;
+        height: 100%;
+      }
+
+      .overlay-label {
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.45);
+        border: 1px solid var(--border);
+      }
+
+      /* =====================
+         ALTTAKİ HARİTA
+         ===================== */
+      #map {
+        width: 100%;
+        height: 420px;
+        margin-top: 20px;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+      }
+
+      ul.no-dot {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 16px;
+        font-size: 13px;
+      }
+
+      ul.no-dot li {
+        margin-bottom: 4px;
       }
     </style>
   </head>
@@ -137,63 +164,131 @@
   <body>
     <main class="container">
       <header class="header">
-        <h1>
+        <h3>
           Sultan Ahmet Camisinin Web Ortamında Servis Edilen Resimlerden
           Türetilmiş 3B Modelinin Elde Edilmesi
-        </h1>
-        <p>
-          <ul>ABDULSAMET İNAN-010210543- inana21@itu.edu.tr</ul>
-          <ul>BEYZA NUR ASLANER-010210537- aslaner21@itu.edu.tr</ul>
-          <ul>İSMAİL EMRE ÖZPERÇİN-010210556- ozpercin21@itu.edu.tr</ul>
-          <ul>EMRE YILMAZ- 010210524- yilmazemr21@itu.edu.tr</ul>
-          <ul>ALİ FIRAT ATASOY- 010220802 - atasoya22@itu.edu.tr</ul>
-          <ul>LOKMAN EREN KADAKAL- 010210532- kadakal21@itu.edu.tr</ul>
-        </p>
+        </h3>
       </header>
 
+      <div class="actions">
+        <button class="btn" id="goMap">Haritada Göster</button>
+      </div>
+
+      <!-- MODEL + OVERLAY HARİTA -->
       <section class="card">
         <div class="embed">
-          <iframe
-            title="Sultan Ahmed Mosque – 3D Model"
-            allowfullscreen
-            mozallowfullscreen="true"
-            webkitallowfullscreen="true"
-            allow="autoplay; fullscreen; xr-spatial-tracking"
-            xr-spatial-tracking
-            execution-while-out-of-viewport
-            execution-while-not-rendered
-            web-share
-            src="https://sketchfab.com/models/2e03311837dd48abba6d610f67721cbc/embed"
-          ></iframe>
-        </div>
+          <!-- 🔽 SENİN VERDİĞİN EMBED (DEĞİŞTİRİLMEDİ) -->
+          <div class="sketchfab-embed-wrapper">
+            <iframe
+              title="Sultan Ahmed Mosque – 3D Model"
+              frameborder="0"
+              allowfullscreen
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xr-spatial-tracking
+              execution-while-out-of-viewport
+              execution-while-not-rendered
+              web-share
+              src="https://sketchfab.com/models/2e03311837dd48abba6d610f67721cbc/embed"
+            >
+            </iframe>
 
-        <div class="footer">
-          <p class="credits">
-            <a
-              href="https://sketchfab.com/3d-models/sultan-ahmed-mosque-3d-model-2e03311837dd48abba6d610f67721cbc?utm_medium=embed&utm_campaign=share-popup&utm_content=2e03311837dd48abba6d610f67721cbc"
-              target="_blank"
-              rel="nofollow"
-              >Sultan Ahmed Mosque – 3D Model</a
+            <p
+              style="
+                font-size: 13px;
+                font-weight: normal;
+                margin: 5px;
+                color: #4a4a4a;
+              "
             >
-            •
-            <a
-              href="https://sketchfab.com/erenboss?utm_medium=embed&utm_campaign=share-popup&utm_content=2e03311837dd48abba6d610f67721cbc"
-              target="_blank"
-              rel="nofollow"
-              >erenboss</a
-            >
-            •
-            <a
-              href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=2e03311837dd48abba6d610f67721cbc"
-              target="_blank"
-              rel="nofollow"
-              >Sketchfab</a
-            >
-          </p>
+              <a
+                href="https://sketchfab.com/3d-models/sultan-ahmed-mosque-3d-model-2e03311837dd48abba6d610f67721cbc"
+                target="_blank"
+                rel="nofollow"
+                style="font-weight: bold; color: #1caad9"
+              >
+                Sultan Ahmed Mosque – 3D Model
+              </a>
+              by
+              <a
+                href="https://sketchfab.com/erenitu"
+                target="_blank"
+                rel="nofollow"
+                style="font-weight: bold; color: #1caad9"
+              >
+                erenitu
+              </a>
+              on
+              <a
+                href="https://sketchfab.com"
+                target="_blank"
+                rel="nofollow"
+                style="font-weight: bold; color: #1caad9"
+              >
+                Sketchfab
+              </a>
+            </p>
+          </div>
 
-          <div class="badge">Tip: Tam ekran için modele tıkla → ⛶</div>
+          <!-- OVERLAY HARİTA -->
+          <div class="overlay-map">
+            <div id="overlayMap"></div>
+            <div class="overlay-label">Sultanahmet Camii</div>
+          </div>
         </div>
       </section>
+
+      <!-- ALTTAKİ HARİTA -->
+      <div id="map"></div>
+
+      <!-- EKİP -->
+      <ul class="no-dot">
+        <li>ABDULSAMET İNAN – 010210543</li>
+        <li>BEYZA NUR ASLANER – 010210537</li>
+        <li>İSMAİL EMRE ÖZPERÇİN – 010210556</li>
+        <li>EMRE YILMAZ – 010210524</li>
+        <li>ALİ FIRAT ATASOY – 010220802</li>
+        <li>LOKMAN EREN KADAKAL – 010210532</li>
+      </ul>
     </main>
+
+    <script>
+      const SULTANAHMET = [41.0054, 28.9768];
+
+      /* Overlay harita */
+      const overlayMap = L.map("overlayMap", {
+        zoomControl: false,
+        attributionControl: false,
+        scrollWheelZoom: false,
+        dragging: true,
+      }).setView(SULTANAHMET, 17);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+      }).addTo(overlayMap);
+
+      L.marker(SULTANAHMET).addTo(overlayMap);
+
+      /* Alttaki harita */
+      const map = L.map("map").setView([41.0082, 28.9784], 12);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap",
+      }).addTo(map);
+
+      const marker = L.marker(SULTANAHMET)
+        .addTo(map)
+        .bindPopup("<b>Sultanahmet Camii</b><br>Fatih / İstanbul");
+
+      document.getElementById("goMap").addEventListener("click", () => {
+        document.getElementById("map").scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          map.flyTo(SULTANAHMET, 16, { duration: 1.2 });
+          marker.openPopup();
+        }, 300);
+      });
+    </script>
   </body>
 </html>
