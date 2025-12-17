@@ -14,12 +14,10 @@
 
     <style>
       :root {
-        --bg1: #0b1220;
-        --bg2: #0a2a3a;
-        --card: rgba(255, 255, 255, 0.08);
-        --border: rgba(255, 255, 255, 0.14);
-        --text: rgba(255, 255, 255, 0.92);
-        --muted: rgba(255, 255, 255, 0.72);
+        --card: rgba(20, 25, 40, 0.82);
+        --border: rgba(255, 255, 255, 0.18);
+        --text: rgba(255, 255, 255, 0.95);
+        --muted: rgba(255, 255, 255, 0.75);
         --link: #38bdf8;
       }
 
@@ -27,18 +25,26 @@
         box-sizing: border-box;
       }
 
+      /* ======================
+         BACKGROUND FOTOĞRAF
+         ====================== */
       body {
         margin: 0;
         min-height: 100vh;
         font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-        color: var(--text);
-        background: radial-gradient(
-            1200px 600px at 20% 10%,
-            #1a3555 0%,
-            transparent 60%
+        color: rgba(255, 255, 255, 0.95);
+
+        background-image: linear-gradient(
+            rgba(10, 15, 30, 0.75),
+            rgba(10, 15, 30, 0.85)
           ),
-          radial-gradient(900px 500px at 80% 30%, #0c6a78 0%, transparent 55%),
-          linear-gradient(135deg, var(--bg1), var(--bg2));
+          url("https://images.unsplash.com/photo-1587836374828-4dbba8c5b9f0?auto=format&fit=crop&w=1920&q=80");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+
         display: grid;
         place-items: center;
         padding: 28px;
@@ -50,12 +56,12 @@
 
       .header {
         text-align: center;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
       }
 
       .header h3 {
         margin: 0;
-        font-size: clamp(18px, 2vw, 24px);
+        font-size: clamp(18px, 2vw, 26px);
       }
 
       .actions {
@@ -67,7 +73,7 @@
       .btn {
         cursor: pointer;
         border: 1px solid var(--border);
-        background: rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.1);
         color: var(--text);
         padding: 10px 16px;
         border-radius: 12px;
@@ -75,7 +81,7 @@
       }
 
       .btn:hover {
-        background: rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.18);
       }
 
       .card {
@@ -83,12 +89,10 @@
         border: 1px solid var(--border);
         border-radius: 18px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(8px);
       }
 
-      /* =====================
-         SKETCHFAB EMBED
-         ===================== */
       .embed {
         position: relative;
         width: 100%;
@@ -104,9 +108,7 @@
         border: 0;
       }
 
-      /* =====================
-         MODEL ÜSTÜ OVERLAY HARİTA
-         ===================== */
+      /* Overlay harita */
       .overlay-map {
         position: absolute;
         top: 14px;
@@ -118,7 +120,7 @@
         border: 1px solid var(--border);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         z-index: 5;
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.35);
       }
 
       #overlayMap {
@@ -133,13 +135,11 @@
         font-size: 11px;
         padding: 4px 8px;
         border-radius: 999px;
-        background: rgba(0, 0, 0, 0.45);
+        background: rgba(0, 0, 0, 0.5);
         border: 1px solid var(--border);
       }
 
-      /* =====================
-         ALTTAKİ HARİTA
-         ===================== */
+      /* Alt harita */
       #map {
         width: 100%;
         height: 420px;
@@ -153,6 +153,7 @@
         padding-left: 0;
         margin-top: 16px;
         font-size: 13px;
+        color: var(--muted);
       }
 
       ul.no-dot li {
@@ -174,64 +175,17 @@
         <button class="btn" id="goMap">Haritada Göster</button>
       </div>
 
-      <!-- MODEL + OVERLAY HARİTA -->
       <section class="card">
         <div class="embed">
-          <!-- 🔽 SENİN VERDİĞİN EMBED (DEĞİŞTİRİLMEDİ) -->
           <div class="sketchfab-embed-wrapper">
             <iframe
               title="Sultan Ahmed Mosque – 3D Model"
-              frameborder="0"
               allowfullscreen
-              mozallowfullscreen="true"
-              webkitallowfullscreen="true"
-              allow="autoplay; fullscreen; xr-spatial-tracking"
-              xr-spatial-tracking
-              execution-while-out-of-viewport
-              execution-while-not-rendered
-              web-share
               src="https://sketchfab.com/models/2e03311837dd48abba6d610f67721cbc/embed"
             >
             </iframe>
-
-            <p
-              style="
-                font-size: 13px;
-                font-weight: normal;
-                margin: 5px;
-                color: #4a4a4a;
-              "
-            >
-              <a
-                href="https://sketchfab.com/3d-models/sultan-ahmed-mosque-3d-model-2e03311837dd48abba6d610f67721cbc"
-                target="_blank"
-                rel="nofollow"
-                style="font-weight: bold; color: #1caad9"
-              >
-                Sultan Ahmed Mosque – 3D Model
-              </a>
-              by
-              <a
-                href="https://sketchfab.com/erenitu"
-                target="_blank"
-                rel="nofollow"
-                style="font-weight: bold; color: #1caad9"
-              >
-                erenitu
-              </a>
-              on
-              <a
-                href="https://sketchfab.com"
-                target="_blank"
-                rel="nofollow"
-                style="font-weight: bold; color: #1caad9"
-              >
-                Sketchfab
-              </a>
-            </p>
           </div>
 
-          <!-- OVERLAY HARİTA -->
           <div class="overlay-map">
             <div id="overlayMap"></div>
             <div class="overlay-label">Sultanahmet Camii</div>
@@ -239,10 +193,8 @@
         </div>
       </section>
 
-      <!-- ALTTAKİ HARİTA -->
       <div id="map"></div>
 
-      <!-- EKİP -->
       <ul class="no-dot">
         <li>ABDULSAMET İNAN – 010210543</li>
         <li>BEYZA NUR ASLANER – 010210537</li>
@@ -256,12 +208,10 @@
     <script>
       const SULTANAHMET = [41.0054, 28.9768];
 
-      /* Overlay harita */
       const overlayMap = L.map("overlayMap", {
         zoomControl: false,
         attributionControl: false,
         scrollWheelZoom: false,
-        dragging: true,
       }).setView(SULTANAHMET, 17);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -270,17 +220,13 @@
 
       L.marker(SULTANAHMET).addTo(overlayMap);
 
-      /* Alttaki harita */
       const map = L.map("map").setView([41.0082, 28.9784], 12);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
-        attribution: "&copy; OpenStreetMap",
       }).addTo(map);
 
-      const marker = L.marker(SULTANAHMET)
-        .addTo(map)
-        .bindPopup("<b>Sultanahmet Camii</b><br>Fatih / İstanbul");
+      const marker = L.marker(SULTANAHMET).addTo(map);
 
       document.getElementById("goMap").addEventListener("click", () => {
         document.getElementById("map").scrollIntoView({ behavior: "smooth" });
