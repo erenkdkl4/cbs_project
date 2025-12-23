@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sultan Ahmed Camii – 3D Model</title>
+    <title>Sultanahmed Camii – 3D Model</title>
 
     <!-- Leaflet -->
     <link
@@ -17,14 +17,12 @@
         --card: rgba(15, 20, 35, 0.82);
         --border: rgba(255, 255, 255, 0.18);
         --text: rgba(255, 255, 255, 0.95);
-        --muted: rgba(255, 255, 255, 0.75);
       }
 
       * {
         box-sizing: border-box;
       }
 
-      /* BACKGROUND */
       body {
         margin: 0;
         min-height: 100vh;
@@ -37,7 +35,6 @@
           url("./bg.jpg");
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
         background-attachment: fixed;
         display: grid;
         place-items: center;
@@ -58,7 +55,6 @@
         font-size: clamp(18px, 2.2vw, 26px);
       }
 
-      /* HARİTADA GÖSTER BUTONU */
       .actions {
         display: flex;
         justify-content: center;
@@ -73,11 +69,6 @@
         padding: 10px 18px;
         border-radius: 999px;
         font-weight: 600;
-        backdrop-filter: blur(6px);
-      }
-
-      .btn:hover {
-        background: rgba(255, 255, 255, 0.2);
       }
 
       .card {
@@ -87,10 +78,8 @@
         overflow: hidden;
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
         margin-bottom: 18px;
-        backdrop-filter: blur(6px);
       }
 
-      /* EMBED BOYU – %25 KISALTILMIŞ */
       .embed {
         position: relative;
         width: 100%;
@@ -106,7 +95,6 @@
         border: 0;
       }
 
-      /* OVERLAY MAP */
       .overlay-map {
         position: absolute;
         top: 14px;
@@ -116,9 +104,8 @@
         border-radius: 14px;
         overflow: hidden;
         border: 1px solid var(--border);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        z-index: 5;
         background: rgba(0, 0, 0, 0.35);
+        z-index: 5;
       }
 
       .overlay-inner {
@@ -135,10 +122,8 @@
         border-radius: 999px;
         background: rgba(0, 0, 0, 0.5);
         border: 1px solid var(--border);
-        user-select: none;
       }
 
-      /* ALTTAKİ HARİTA */
       #map {
         width: 100%;
         height: 420px;
@@ -147,19 +132,12 @@
         border: 1px solid var(--border);
       }
 
-      /* MOBİLDE OVERLAY KAPALI */
       @media (max-width: 700px) {
         .overlay-map {
           display: none !important;
         }
-
         .embed {
           aspect-ratio: 16 / 7.2;
-        }
-
-        body {
-          padding: 18px;
-          background-attachment: scroll;
         }
       }
     </style>
@@ -169,28 +147,26 @@
     <main class="container">
       <header class="header">
         <h3>
-          Sultan Ahmet Camisinin Web Ortamında Servis Edilen Resimlerden
+          Sultanahmed Camisinin Web Ortamında Servis Edilen Resimlerden
           Türetilmiş 3B Modelinin Elde Edilmesi ve Web Ortamında Sunulması
         </h3>
       </header>
 
-      <!-- BUTON -->
       <div class="actions">
         <button class="btn" id="goMap">Haritada Göster</button>
       </div>
 
-      <!-- 1. EMBED -->
+      <!-- ========== EMBEDLER ========== -->
+
+      <!-- 1 -->
       <section class="card">
         <div class="embed">
           <div class="sketchfab-embed-wrapper">
             <iframe
-              title="Sultan Ahmed Mosque – 3D Model"
               allowfullscreen
               src="https://sketchfab.com/models/2e03311837dd48abba6d610f67721cbc/embed"
-            >
-            </iframe>
+            ></iframe>
           </div>
-
           <div class="overlay-map">
             <div id="overlayMap1" class="overlay-inner"></div>
             <div class="overlay-label">Sultanahmet Camii</div>
@@ -198,18 +174,15 @@
         </div>
       </section>
 
-      <!-- 2. EMBED -->
+      <!-- 2 -->
       <section class="card">
         <div class="embed">
           <div class="sketchfab-embed-wrapper">
             <iframe
-              title="on-cephe-tif"
               allowfullscreen
               src="https://sketchfab.com/models/19e724e2e1cb42c7863faf6382838211/embed"
-            >
-            </iframe>
+            ></iframe>
           </div>
-
           <div class="overlay-map">
             <div id="overlayMap2" class="overlay-inner"></div>
             <div class="overlay-label">Sultanahmet Camii</div>
@@ -217,20 +190,65 @@
         </div>
       </section>
 
-      <!-- 3. EMBED -->
+      <!-- 3 -->
       <section class="card">
         <div class="embed">
           <div class="sketchfab-embed-wrapper">
             <iframe
-              title="3-cwphw-tif"
               allowfullscreen
               src="https://sketchfab.com/models/032e372f17b1482c91bcadd2c3b3a028/embed"
-            >
-            </iframe>
+            ></iframe>
           </div>
-
           <div class="overlay-map">
             <div id="overlayMap3" class="overlay-inner"></div>
+            <div class="overlay-label">Sultanahmet Camii</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="card">
+        <div class="embed">
+          <div class="sketchfab-embed-wrapper">
+            <iframe
+              allowfullscreen
+              src="https://sketchfab.com/models/6026a563b80342429e7abfd3f664e41d/embed"
+            ></iframe>
+          </div>
+          <div class="overlay-map">
+            <div id="overlayMap4" class="overlay-inner"></div>
+            <div class="overlay-label">Sultanahmet Camii</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="card">
+        <div class="embed">
+          <div class="sketchfab-embed-wrapper">
+            <iframe
+              allowfullscreen
+              src="https://sketchfab.com/models/62a5861860df4121995dd54926f91229/embed"
+            ></iframe>
+          </div>
+          <div class="overlay-map">
+            <div id="overlayMap5" class="overlay-inner"></div>
+            <div class="overlay-label">Sultanahmet Camii</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 (SON EKLENEN – INDOOR) -->
+      <section class="card">
+        <div class="embed">
+          <div class="sketchfab-embed-wrapper">
+            <iframe
+              allowfullscreen
+              src="https://sketchfab.com/models/3ad2e1ce03b4469b8529569c17e4b4b6/embed"
+            ></iframe>
+          </div>
+          <div class="overlay-map">
+            <div id="overlayMap6" class="overlay-inner"></div>
             <div class="overlay-label">Sultanahmet Camii</div>
           </div>
         </div>
@@ -243,49 +261,46 @@
     <script>
       const SULTANAHMET = [41.0054, 28.9768];
 
-      function makeOverlayMap(divId) {
-        const m = L.map(divId, {
+      function makeOverlayMap(id) {
+        const m = L.map(id, {
           zoomControl: false,
           attributionControl: false,
           scrollWheelZoom: false,
-          dragging: true,
         }).setView(SULTANAHMET, 17);
-
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           maxZoom: 19,
         }).addTo(m);
-
         L.marker(SULTANAHMET).addTo(m);
-        return m;
       }
 
-      makeOverlayMap("overlayMap1");
-      makeOverlayMap("overlayMap2");
-      makeOverlayMap("overlayMap3");
+      [
+        "overlayMap1",
+        "overlayMap2",
+        "overlayMap3",
+        "overlayMap4",
+        "overlayMap5",
+        "overlayMap6",
+      ].forEach((id) => {
+        if (document.getElementById(id)) makeOverlayMap(id);
+      });
 
       const map = L.map("map").setView([41.0082, 28.9784], 12);
-
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
-        attribution: "&copy; OpenStreetMap",
       }).addTo(map);
-
       const marker = L.marker(SULTANAHMET)
         .addTo(map)
-        .bindPopup("<b>Sultanahmet Camii</b><br>Fatih / İstanbul");
+        .bindPopup("<b>Sultanahmet Camii</b>");
 
-      document.getElementById("goMap").addEventListener("click", () => {
+      document.getElementById("goMap").onclick = () => {
         document.getElementById("map").scrollIntoView({ behavior: "smooth" });
         setTimeout(() => {
-          map.flyTo(SULTANAHMET, 16, { duration: 1.2 });
+          map.flyTo(SULTANAHMET, 16);
           marker.openPopup();
         }, 300);
-      });
+      };
     </script>
-
-    <ul style="font-weight: bold">
-      010210543 Abdulsamet İnan - inana21@itu.edu.tr
-    </ul>
+    <ul style="font-weight: bold">010210543 Abdulsamet İnan - inana21@itu.edu.tr</ul>
     <ul style="font-weight: bold">
       010210537 Beyza Nur Aslaner - aslaner21@itu.edu.tr
     </ul>
@@ -301,5 +316,9 @@
     <ul style="font-weight: bold">
       010210532 Lokman Eren Kadakal - kadakal21@itu.edu.tr
     </ul>
+
+
+
+    </p>
   </body>
 </html>
