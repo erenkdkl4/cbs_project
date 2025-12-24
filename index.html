@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sultanahmed Camii – 3D Model</title>
 
+    <!-- 🔥🛰️ LEAFLET KÜTÜPHANELERİ (CSS + JS) -->
     <!-- Leaflet -->
     <link
       rel="stylesheet"
@@ -12,6 +13,7 @@
     />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+    <!-- 🎨💅 SAYFA STİLLERİ -->
     <style>
       :root {
         --card: rgba(15, 20, 35, 0.82);
@@ -145,6 +147,7 @@
 
   <body>
     <main class="container">
+      <!-- 🏛️✨ SAYFA BAŞLIĞI -->
       <header class="header">
         <h3>
           Sultanahmed Camisinin Web Ortamında Servis Edilen Resimlerden
@@ -152,12 +155,15 @@
         </h3>
       </header>
 
+      <!-- 🎯🗺️ HARİTAYA HIZLI GİT BUTONU -->
       <div class="actions">
         <button class="btn" id="goMap">Haritada Göster</button>
       </div>
 
+      <!-- 🚀🧩 EMBEDLER BAŞLANGIÇ -->
       <!-- ========== EMBEDLER ========== -->
 
+      <!-- 🔥🧿 MODEL 1: SKETCHFAB EMBED + OVERLAY MAP -->
       <!-- 1 -->
       <section class="card">
         <div class="embed">
@@ -174,6 +180,7 @@
         </div>
       </section>
 
+      <!-- 🔥🧿 MODEL 2: SKETCHFAB EMBED + OVERLAY MAP -->
       <!-- 2 -->
       <section class="card">
         <div class="embed">
@@ -190,6 +197,7 @@
         </div>
       </section>
 
+      <!-- 🔥🧿 MODEL 3: SKETCHFAB EMBED + OVERLAY MAP -->
       <!-- 3 -->
       <section class="card">
         <div class="embed">
@@ -206,6 +214,7 @@
         </div>
       </section>
 
+      <!-- 🔥🧿 MODEL 4: SKETCHFAB EMBED + OVERLAY MAP -->
       <!-- 4 -->
       <section class="card">
         <div class="embed">
@@ -222,6 +231,7 @@
         </div>
       </section>
 
+      <!-- 🔥🧿 MODEL 5: SKETCHFAB EMBED + OVERLAY MAP -->
       <!-- 5 -->
       <section class="card">
         <div class="embed">
@@ -238,6 +248,7 @@
         </div>
       </section>
 
+      <!-- 🔥🧿 MODEL 6: (SON EKLENEN – INDOOR) SKETCHFAB EMBED + OVERLAY MAP -->
       <!-- 6 (SON EKLENEN – INDOOR) -->
       <section class="card">
         <div class="embed">
@@ -254,10 +265,12 @@
         </div>
       </section>
 
+      <!-- 🗺️⚓ ALT HARİTA (OPENSTREETMAP) -->
       <!-- ALT HARİTA -->
       <div id="map"></div>
     </main>
 
+    <!-- 🧠⚙️ JAVASCRIPT: LEAFLET HARİTALAR + MARKER + BUTON AKIŞI -->
     <script>
       const SULTANAHMET = [41.0054, 28.9768];
 
@@ -290,7 +303,9 @@
       }).addTo(map);
       const marker = L.marker(SULTANAHMET)
         .addTo(map)
-        .bindPopup("<b>Sultanahmet Camii</b>");
+        .bindPopup(
+          '<a href="https://www.google.com/maps?q=Sultanahmet+Camii" target="_blank" rel="noopener noreferrer"><b>Sultanahmet Camii</b></a>'
+        );
 
       document.getElementById("goMap").onclick = () => {
         document.getElementById("map").scrollIntoView({ behavior: "smooth" });
@@ -300,6 +315,8 @@
         }, 300);
       };
     </script>
+
+    <!-- 👥📌 İSİM LİSTESİ -->
     <ul style="font-weight: bold">010210543 Abdulsamet İnan - inana21@itu.edu.tr</ul>
     <ul style="font-weight: bold">
       010210537 Beyza Nur Aslaner - aslaner21@itu.edu.tr
@@ -316,8 +333,6 @@
     <ul style="font-weight: bold">
       010210532 Lokman Eren Kadakal - kadakal21@itu.edu.tr
     </ul>
-
-
 
     </p>
   </body>
